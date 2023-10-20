@@ -1,5 +1,5 @@
 # Generation
-The generated query for each regularization are provided in the pickle file.
+The generated quereis for each regularization are provided in the pickle files, in the form `{dataset_name}_{type}.pickle`. The prompt used to generate queries can be found in `prompt\`, in the form `{dataset_name}_{type}_prompt.pickle`.
 
 ## Table of Contents
 * [Format](#file-format)
