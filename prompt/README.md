@@ -1,5 +1,6 @@
 # Prompt for regularization on query generation
-The specific prompts for each regularization are in the pickle file. We also give sample prompts for each prompt we provided in this folder below.
+The specific prompts for each regularization are in the pickle files, in the form `{dataset_name}_{type}_prompt.pickle`. We also give sample prompts for each prompt we provided in this folder below.
+The generated synthetic queries using these prompts are in `generation/` in the form `{dataset_name}_{type}.pickle`.
 
 ## Table of Contents
 * [Format](#file-format)
