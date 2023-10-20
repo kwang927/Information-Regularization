@@ -2,8 +2,16 @@
 The specific prompts for each regularization are in the pickle files, in the form `{dataset_name}_{type}_prompt.pickle`. We also give sample prompts for each prompt we provided in this folder below.
 The generated synthetic queries using these prompts are in `generation/` in the form `{dataset_name}_{type}.pickle`.
 
+## File Format
+The files are in form `{dataset_name}_{type}_prompt.pickle`.
+The types include:
+- `Ireg`: Instruction regularization
+    - `Qreg_Ireg`: Query regularization on Instruction regularization
+- `Dreg_{p}%`: Document p% regularization
+    - `Qreg_Dreg_{p}%`: Query regularization on Document p% regularization
+- `promptagator`: [Promptagator style](https://iclr.cc/virtual/2023/poster/10937)  
+
 ## Table of Contents
-* [Format](#file-format)
 * [DORIS-MAE](#doris-mae)
     * [Instruction regularization prompt](#doris-mae-instruction-regularization-prompt)
         * [Query regularization on Instruction regularization prompt](#doris-mae-query-regularization-on-instruction-regularization-prompt)
@@ -31,15 +39,6 @@ The generated synthetic queries using these prompts are in `generation/` in the 
         * [Query Regularization on Document regularization 80% prompt](#wtb-query-regularization-on-document-regularization-80-prompt)
     * [Get keywords prompt](#wtb-get-keywords-prompt)
     * [Promptagator prompt example](#wtb-promptagator-prompt)
-
-## File Format
-The files are in form `{dataset_name}_{type}_prompt.pickle`.
-The types include:
-- `Ireg`: Instruction regularization
-    - `Qreg_Ireg`: Query regularization on Instruction regularization
-- `Dreg_{p}%`: Document p% regularization
-    - `Qreg_Dreg_{p}%`: Query regularization on Document p% regularization
-- `promptagator`: [Promptagator style](https://iclr.cc/virtual/2023/poster/10937)  
 
 
 ## DORIS-MAE
