@@ -12,3 +12,8 @@ The types include:
 - `Dreg_{p}%`: Document p% regularization
     - `Qreg_Dreg_{p}%`: Query regularization on Document p% regularization
 - `promptagator`: [Promptagator style](https://iclr.cc/virtual/2023/poster/10937)
+
+The files contain dictionary of the following keys:
+- `id`: the query id
+- `query`: the synthetically generated query
+- `breakdown`: the query after Query regularization. This key is only contained in Qreg files.
