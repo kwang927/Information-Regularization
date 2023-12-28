@@ -141,7 +141,9 @@ def evaluation_all(description, option, cuda, bs, path_list, bootstrap=True, exp
             print(f"checkpoint: {e5v3_path} :  Average metrics  :  {np.mean(all_value)}%")
             print("-"*65)
 
-
+    if not os.path.isdir(f"{rank_result_path}/{level}/result"):
+            print("creating dir")
+            os.makedirs(f"{rank_result_path}/{level}/result", exist_ok=True)
     with open(f"{rank_result_path}/{level}/result/result_dict_{experiment_name}.pickle", "wb") as f:
         pickle.dump(final_result_dict, f)
 
