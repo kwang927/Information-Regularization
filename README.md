@@ -3,6 +3,11 @@
 Effective information retrieval (IR) in settings with limited training data, particularly for complex queries, remains a challenging task. This paper introduces a method of Information Regularization for synthetic query generation aimed at improving data augmentation techniques and consequently, IR systems, by preventing models from learning superficial features of queries. Our approach, representing a novel application of regularization techniques in synthetic data creation for IR, is tested on three recent IR tasks characterized by complex queries: DORIS-MAE, ArguAna, and WhatsThatBook. Experimental results indicate that our regularization techniques not only outperform previous synthetic query generation methods on the tasks considered but also reduce cost by up to 50\%. Furthermore, this paper categorizes and explores three regularization methods at different stages of the query synthesis pipeline—input, prompt, and output—each offering varying degrees of performance improvement compared to models where no regularization is applied. This provides a systematic approach for optimizing synthetic data generation in data-limited, complex-query IR scenarios.
 
 ## Setup
+We highly recommend creating a new conda environment for the following steps by:
+```
+conda create -n info_reg python=3.10
+conda activate info_reg
+```
 To start, please run
 ```
 bash setup.sh
