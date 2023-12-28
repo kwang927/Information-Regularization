@@ -86,9 +86,15 @@ def get_embed_text(dataset, dataset_name, model_name, batch_size, cuda='cpu', mo
 
 
     if model_path is None:
+        if not os.path.isdir("./evaluation/embedding_result"):
+            print("creating dir")
+            os.makedirs("./evaluation/embedding_result", exist_ok=True)
         with open(f"./evaluation/embedding_result/{dataset_name}_embedding_result_of_{model_name}_pretrain.pickle", 'wb') as f:
             pickle.dump(store_result, f)
     else:
+        if not os.path.isdir("./evaluation/embedding_result"):
+            print("creating dir")
+            os.makedirs("./evaluation/embedding_result", exist_ok=True)
         with open(f"./evaluation/embedding_result/{dataset_name}_embedding_result_of_{model_name}_{model_path}.pickle", 'wb') as f:
             pickle.dump(store_result, f)
 
