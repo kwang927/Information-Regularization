@@ -1,5 +1,3 @@
-conda create -n info_reg python=3.10
-conda activate info_reg
 conda install pytorch torchvision torchaudio pytorch-cuda=12.1 -c pytorch-nightly -c nvidia
 pip install beir
 pip install tokenizers==0.12.1
