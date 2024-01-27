@@ -38,7 +38,7 @@ To generate results from gpt:
 3. **Run the Generation Script**:
    - Execute the `run_generation.sh` script to start the generation process.
    - We recommend using nohup to run the generation process
-     ```bash
+     ```
      nohup bash run_generation.sh > generation_log/<LOG_FILE> 2>&1 &  
      ```
      remember to replace <LOG_FILE> with name of the log file
@@ -46,11 +46,11 @@ To generate results from gpt:
 
 ## Training & Evaluation
 To train an embedding model using synthetically generated data, run the following
-```bash
+```
 python3 -u run_training_evaluation.py -query_type <QUERY_TYPE> -num_experiment <NUM_EXPERIMENTS> -name <EXPERIMENT_NAME> -query_num <QUERY_NUMBER> -half <WHETHER_FREEZE_HALF> -shuffle <SHUFFLE> -cuda <CUDA> -margin <MARGIN> -batch_size <TRAINING_BATCHSIZE> -model_name <MODEL> -evaluation <WHETHER_RUN_EVALUATION>
 ```
 
-- `<QUERY_TYPE>`: Type of query ('old' or 'new').
+- `<QUERY_TYPE>`: Type of query (e.g. `arguana_Dreg_80%.pickle`).
 - `<NUM_EXPERIMENTS>`: Number of experiments to run.
 - `<EXPERIMENT_NAME>`: Name for the experiment.
 - `<QUERY_NUMBER>`: Number of queries to process.
@@ -61,6 +61,23 @@ python3 -u run_training_evaluation.py -query_type <QUERY_TYPE> -num_experiment <
 - `<TRAINING_BATCHSIZE>`: Training batch size
 - `<MODEL>`: The model to train/evaluate
 - `<WHETHER_RUN_EVALUATION>`: Set to `True` or `False` to decide whether to run evaluation or not
+
+To train an embedding model using contrastive finetuning on the dataset for domain adaptation, run the following
+
+
+```
+python3 -u run_contrastive_finetuning.py -query_type <QUERY_TYPE> -num_experiment <NUM_EXPERIMENTS> -name <EXPERIMENT_NAME> -query_num <QUERY_NUMBER> -half <WHETHER_FREEZE_HALF> -shuffle <SHUFFLE> -cuda <CUDA> -margin <MARGIN> -batch_size <TRAINING_BATCHSIZE> -model_name <MODEL> -sent <WHETHER_SENT>
+```
+
+Most of the arguments are same as the previous ones, except for:
+
+- `<WHETHER_SENT>`: Set to `True` or `False` to decide whether to run contrastive finetuning with sentences or the whole paragraph
+
+To train an embedding model using promptagator's queries and consistency filtering, run the following
+
+```
+python3 -u run_promptagator.py -query_type <QUERY_TYPE> -num_experiment <NUM_EXPERIMENTS> -name <EXPERIMENT_NAME> -query_num <QUERY_NUMBER> -half <WHETHER_FREEZE_HALF> -shuffle <SHUFFLE> -cuda <CUDA> -margin <MARGIN> -batch_size <TRAINING_BATCHSIZE> -model_name <MODEL>
+```
 
 
 Replace each `<PLACEHOLDER>` with the appropriate value for your experiment.
