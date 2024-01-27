@@ -6,6 +6,7 @@ import random
 from tqdm import tqdm
 import sys
 import numpy as np
+from nltk import sent_tokenize
 
 def preprocessing(text):
     '''
@@ -43,7 +44,7 @@ def get_pair_data_arguana(experiment_name, query_num, query, arguana_corpus, d_f
 
     if breakdown:
 
-        if 'breakdown' not in experiment_name:
+        if 'Qreg' not in experiment_name:
             raise ValueError("Should not happen for breakdown preparation")
 
         query_dict = {}
@@ -141,7 +142,6 @@ def get_pair_data_arguana(experiment_name, query_num, query, arguana_corpus, d_f
             random.shuffle(pairs)
     
         train_trip_list = pairs
-        # test_trip_list = pairs[int(len(pairs)*0.9):]
         test_trip_list = []
     
         print(f"Prepare data for ArguAna, train_length: {len(train_trip_list)}, test_length: {len(test_trip_list)}")
@@ -185,4 +185,121 @@ def get_pair_data(experiment_name, query_num, query, dataset, d_fake, shuffle):
     print(len(train_trip))
 
     with open(f"./data_prep/train_test_data/train_{experiment_name}.pickle", "wb") as f:
+        pickle.dump(train_trip, f)
+
+def get_pair_data_arguana_gemini(experiment_name, query_num, query, arguana_corpus, d_fake, shuffle, breakdown = False, sent = False):
+
+    if breakdown:
+
+        raise ValueError("should not go here")
+
+    else:
+
+        query_dict = {}
+        for q in query:
+            query_dict[q['id']] = {'query': q['query']}
+    
+        keys = list(query_dict.keys())[:query_num]
+    
+        if 'arguana' not in experiment_name:
+            raise ValueError("Experiment_name has no Arguana")
+    
+        pairs = []
+    
+        for k in keys:
+            mytext = preprocessing(arguana_corpus[k]['query'])
+            if sent:
+                mytext_list = sent_tokenize(mytext)
+                for s in mytext_list:
+                    D = (s, s)
+                    pairs.append(D)
+            else:    
+                D = (mytext, mytext)
+                pairs.append(D)
+                    
+        if shuffle:
+            random.shuffle(pairs)
+    
+        train_trip_list = pairs
+        test_trip_list = []
+    
+        print(f"Prepare data for ArguAna, train_length: {len(train_trip_list)}, test_length: {len(test_trip_list)}")
+    
+        with open(f"./data_prep/train_test_data/train_gemini_{experiment_name}.pickle", "wb") as f:
+            pickle.dump(train_trip_list, f)
+    
+
+            
+
+def get_pair_large_doris_mae_gemini(keys, query_dict, dataset, sent = False):
+    pairs = [ ]
+    
+    for k in query_dict:
+        mytext = preprocessing(dataset['Corpus'][k]['original_abstract'])
+        if sent:
+            mytext_list = sent_tokenize(mytext)
+            for s in mytext_list:
+                D = (s, s)
+                pairs.append([D])
+        else:    
+            D = (mytext, mytext)
+            pairs.append([D])
+
+    return pairs
+
+
+def get_pair_large_batch_wtb_gemini(keys, query_dict, dataset, sent = False):
+    pairs = [ ]
+    for k in keys:
+        if random.random()>0.5:
+            text = dataset['Corpus'][k]['title']+ " . "+ dataset['Corpus'][k]['description']
+        else:
+            text = query_dict[k]['query']
+        mytext = preprocessing(text)
+        
+        if sent:
+            mytext_list = sent_tokenize(mytext)
+            for s in mytext_list:
+                D = (s, s)
+                pairs.append([D])
+        else:    
+            D = (mytext, mytext)
+            pairs.append([D])
+
+    return pairs
+
+def get_pair_data_gemini(experiment_name, query_num, query, dataset, d_fake, shuffle, sent):
+    query_dict = {}
+    for q in query:
+        query_dict[q['id']] = {'query': q['query']}
+
+    keys = list(query_dict.keys())[:query_num]
+
+    if experiment_name.split("_")[0] == "batch":
+        print("preparing paired data with one anchor and positive, NO Negative")
+        if "wtb" in experiment_name:
+            print("Confirming the dataset is WTB")
+            pairs = get_pair_large_batch_wtb_gemini(keys, query_dict, dataset, sent)
+        else:
+            print("Confirming the dataset is DM")
+            pairs = get_pair_large_doris_mae_gemini(keys, query_dict, dataset, sent)
+    else:
+        raise ValueError
+    
+    if shuffle:
+        random.shuffle(pairs)
+
+    train_trip_list = pairs
+    
+    train_trip = []
+    for trip in train_trip_list:
+        for each in trip:
+            train_trip.append(each)
+
+    if shuffle:
+        random.shuffle(train_trip)
+    print(len(train_trip))
+
+
+    with open(f"./data_prep/train_test_data/train_gemini_{experiment_name}.pickle", "wb") as f:
         pickle.dump(train_trip, f)
