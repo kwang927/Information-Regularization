@@ -199,7 +199,7 @@ def main(query_type="old", num_experiment = 10, name = "vanilla1", query_num = 4
                 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="created by Wang")
+    parser = argparse.ArgumentParser(description="")
     
     parser.add_argument("-query_type", "--query_type", type=str, required=True, help="types of query")
     parser.add_argument("-num_experiment", "--num_experiment", type = int, required = True, help = "number of trials")
