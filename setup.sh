@@ -7,9 +7,13 @@ pip install transformers
 pip install openai==0.27.8
 pip install huggingface_hub==0.20.1
 pip install --upgrade huggingface_hub
+pip install nltk
 
 
 # download dataset and unzip necessary files
+
+mkdir ./training/model_checkpoints
+mkdir ./data_prep/train_test_data
 
 cd evaluation/dataset/
 wget https://zenodo.org/record/8299749/files/DORIS-MAE_dataset_v1.json
