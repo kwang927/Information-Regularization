@@ -15,30 +15,26 @@ The types include:
 * [DORIS-MAE](#doris-mae)
     * [Instruction regularization prompt](#doris-mae-instruction-regularization-prompt)
         * [Query regularization on Instruction regularization prompt](#doris-mae-query-regularization-on-instruction-regularization-prompt)
-    * [Document regularization 40% prompt](#doris-mae-document-regularization-40-prompt)
-        * [Query Regularization on Document regularization 40% prompt](#doris-mae-query-regularization-on-document-regularization-40-prompt)
+    * [Document regularization 40% / 60% prompt](#doris-mae-document-regularization-40--60-prompt)
     * [Document regularization 80% prompt](#doris-mae-document-regularization-80-prompt)
-        * [Query Regularization on Document regularization 80% prompt](#doris-mae-query-regularization-on-document-regularization-80-prompt)
+    * [Query Regularization on Document regularization 40% / 60% / 80% prompt](#doris-mae-query-regularization-on-document-regularization-40--60--80-prompt)
     * [Get keywords prompt](#doris-mae-get-keywords-prompt)
     * [Promptagator prompt example](#doris-mae-promptagator-prompt)
 * [ArguAna](#arguana)
     * [Instruction regularization prompt](#arguana-instruction-prompt)
         * [Query regularization on Instruction regularization prompt](#arguana-query-regularization-on-instruction-regularization-prompt)
-    * [Document regularization 40% prompt](#arguana-document-regularization-40-prompt)
-        * [Query Regularization on Document regularization 40% prompt](#arguana-query-regularization-on-document-regularization-40-prompt)
-    * [Document regularization 80% prompt](#arguana-document-regularization-80-prompt)
-        * [Query Regularization on Document regularization 80% prompt](#arguana-query-regularization-on-document-regularization-80-prompt)
+    * [Document regularization 40% / 60% / 80% prompt](#arguana-document-regularization-40--60--80-prompt)
+    * [Query Regularization on Document regularization 40% / 60% / 80% prompt](#arguana-query-regularization-on-document-regularization-40--60--80-prompt)
     * [Get keywords prompt](#arguana-get-keywords-prompt)
     * [Promptagator prompt example](#arguana-promptagator-prompt)
 * [WhatsThatBook](#whatsthatbook)
-    * [Instruction regularization prompt](#wtb-instruction-regularization-prompt)
-        * [Query regularization on Instruction regularization prompt](#wtb-query-regularization-on-instruction-regularization-prompt)
-    * [Document regularization 40% prompt](#wtb-document-regularization-40-prompt)
-        * [Query Regularization on Document regularization 40% prompt](#wtb-query-regularization-on-document-regularization-40-prompt)
-    * [Document regularization 80% prompt](#wtb-document-regularization-80-prompt)
-        * [Query Regularization on Document regularization 80% prompt](#wtb-query-regularization-on-document-regularization-80-prompt)
-    * [Get keywords prompt](#wtb-get-keywords-prompt)
-    * [Promptagator prompt example](#wtb-promptagator-prompt)
+    * [Instruction regularization prompt](#whatsthatbook-instruction-regularization-prompt)
+        * [Query regularization on Instruction regularization prompt](#whatsthatbook-query-regularization-on-instruction-regularization-prompt)
+    * [Document regularization 40% prompt](#whatsthatbook-document-regularization-40-prompt)
+    * [Document regularization 60% / 80% prompt](#whatsthatbook-document-regularization-60--80-prompt)
+    * [Query Regularization on Document regularization 40% / 60% / 80% prompt](#whatsthatbook-query-regularization-on-document-regularization-40--60--80-prompt)
+    * [Get keywords prompt](#whatsthatbook-get-keywords-prompt)
+    * [Promptagator prompt example](#whatsthatbook-promptagator-prompt)
 
 
 ## DORIS-MAE
@@ -67,7 +63,7 @@ The types include:
     Given a complex query, extract 4 disjoint separate problem statements from it.
     Query:
 
-### DORIS-MAE Document regularization 40% prompt
+### DORIS-MAE Document regularization 40% / 60% prompt
     Here is a redacted scientific abstract: "{Redacted_abstract}".
 
     Here is the example query based on other abstract: "{Example_query}".
@@ -75,10 +71,6 @@ The types include:
     Follow the style of the example query, write a new **query** based on the provided abstract.
 
     Only output the new query (strictly more than 125 words). The query should not contain "_".  Note that the query should mimic the style of the example query and base on the redacted query.
-
-### DORIS-MAE Query regularization on Document regularization 40% prompt
-    Given a complex query, extract 3 disjoint separate problem statements from it.
-    Query: {query}
 
 ### DORIS-MAE Document regularization 80% prompt
     Here is a heavily redacted scientific abstract: "{Redacted_abstract}".
@@ -89,7 +81,7 @@ The types include:
 
     Only output the new query (strictly more than 125 words). The query should not contain "_".  Note that the query should mimic the style of the example query and base on the redacted query.
 
-### DORIS-MAE Query regularization on Document regularization 80% prompt
+### DORIS-MAE Query regularization on Document regularization 40% / 60% / 80% prompt
     Given a complex query, extract 3 disjoint separate problem statements from it.
     Query: {query}
 
@@ -151,24 +143,14 @@ The types include:
     Given an argument, summarize it down to a shorter argument with at most 50 words.
     Argument: {argument}
 
-### ArguAna Document regularization 40% prompt
+### ArguAna Document regularization 40% / 60% / 80% prompt
     Given a redacted argument that has multiple positions it supports, determine one of the positions that it supports, and generate a one paragraph counterargument that has a new perspective on it. The counterargument should be an independent argument. The counter argument *Must Not* have the word argument in it. Output the counter argument after the key word "Counter:"
         
     {redacted_argument}
 
-### ArguAna Query regularization on Document regularization 40% prompt
+### ArguAna Query regularization on Document regularization 40% / 60% / 80% prompt
     Given an argument, summarize it down to a shorter argument with at most 50 words.
-    Argument: {query}
-
-
-### ArguAna Document regularization 80% prompt
-    Given a redacted argument that has multiple positions it supports, determine one of the positions that it supports, and generate a one paragraph counterargument that has a new perspective on it. The counterargument should be an independent argument. The counter argument *Must Not* have the word argument in it. Output the counter argument after the key word "Counter:"
-        
-    {redacted_argument}
-
-### ArguAna Query regularization on Document regularization 80% prompt
-    Given an argument, summarize it down to a shorter argument with at most 50 words.
-    Argument:  {argument}
+    Argument: {argument}
 
 ### ArguAna Get keywords prompt
     Here is an argument: {argument}
@@ -213,7 +195,7 @@ The types include:
 
 
 ## WhatsThatBook
-### wtb Instruction regularization prompt
+### WhatsThatBook Instruction regularization prompt
     I want you to transform the description of a book into a tip of the tongue query in a particular manner. Here is one example of the transformation:
 
     Example Description:
@@ -238,11 +220,11 @@ The types include:
     4. Ensure your query matches the length of the new book description. Write *only* the query. 
     Do steps 1-4 above incrementally
 
-### wtb Query regularization on Instruction regularization prompt
+### WhatsThatBook Query regularization on Instruction regularization prompt
     Given a query, summarize it down to a shorter query with at most 50 words.
     Query: {query}
 
-### wtb Document regularization 40% prompt
+### WhatsThatBook Document regularization 40% prompt
     Here is a redacted book description: "{redacted_description}"
 
     Here is an example tip-of-tongue query based on an example book description: "{Example_query}".
@@ -251,11 +233,7 @@ The types include:
 
     Only output the new query (strictly more than 125 words) in one paragraph. The query should not contain "_".  Note that the query should mimic the style of the example query and entirely base on the redacted book description.
 
-### wtb Query regularization on Document regularization 40% prompt
-    Given a query, summarize it down to a shorter query with at most 50 words.
-    Query: {query}
-
-### wtb Document regularization 80% prompt
+### WhatsThatBook Document regularization 60% / 80% prompt
     Here is a heavily redacted book description: "{redacted_description}".
 
     Here is an example tip-of-tongue query based on an example book description: "{Example_query}".
@@ -264,15 +242,15 @@ The types include:
 
     Only output the new query (strictly more than 125 words) in one paragraph. The query should not contain "_".  Note that the query should mimic the style of the example query and entirely base on the redacted book description.
 
-### wtb Query regularization on Document regularization 80% prompt
+### WhatsThatBook Query regularization on Document regularization 40% / 60% / 80% prompt
     Given a query, summarize it down to a shorter query with at most 50 words.
     Query: {query}
 
-### wtb Get keywords prompt
+### WhatsThatBook Get keywords prompt
     Here is a description of a book: {description}
     Give me **all** the important words that represent salient ideas in the description. Output the words in a python list format.
 
-### wtb promptagator prompt
+### WhatsThatBook promptagator prompt
     Description_1:
     {Description_1}
     Query_1:
