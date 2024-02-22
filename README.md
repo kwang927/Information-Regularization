@@ -1,4 +1,17 @@
-# Information-Regularization
+<div align="center">
+<h1>IR2: Information Regularization for Synthetic Query Generation of Information Retrieval Tasks (LREC-COLING 2024)</h1>
+
+Jianyou (Andre) Wang<sup>\*</sup>&nbsp; Kaicheng Wang<sup>\*</sup>&nbsp; Xiaoyue Wang<sup>\*</sup>&nbsp; Weili Cao&nbsp; Ramamohan Paturi<sup>+</sup>&nbsp; Leon Bergen<sup>+</sup>
+
+Laboratory for Emerging Intelligence (LEI)
+
+CSE Department, University of California, San Diego
+
+La Jolla, CA 92093
+
+</div>
+
+
 ## Paper abstract
 Effective information retrieval (IR) in settings with limited training data, particularly for complex queries, remains a challenging task. This paper introduces a method of Information Regularization for synthetic query generation aimed at improving data augmentation techniques and consequently, IR systems, by preventing models from learning superficial features of queries. Our approach, representing a novel application of regularization techniques in synthetic data creation for IR, is tested on three recent IR tasks characterized by complex queries: DORIS-MAE, ArguAna, and WhatsThatBook. Experimental results indicate that our regularization techniques not only outperform previous synthetic query generation methods on the tasks considered but also reduce cost by up to 50\%. Furthermore, this paper categorizes and explores three regularization methods at different stages of the query synthesis pipeline—input, prompt, and output—each offering varying degrees of performance improvement compared to models where no regularization is applied. This provides a systematic approach for optimizing synthetic data generation in data-limited, complex-query IR scenarios.
 
